@@ -1,0 +1,77 @@
+# Prompt Engineering LAB01 - Prompt Variations
+#
+# Tum deneyler ayni gorevi gerceklestirir:
+# Bir elektronik sirketinin musteri destek mesajini kategori ve oncelik olarak siniflandirmak.
+#
+# Kategoriler: billing, technical_issue, cancellation, complaint, general_inquiry
+# Oncelik seviyeleri: low, medium, high
+#
+# Her deney, oncekilere bilesen ekleyerek olusur. Boylece "daha fazla bilesen = daha iyi performans mi?"
+# sorusu test edilebilir.
+
+instruction: |
+  Sen bir elektronik sirketinin musteri destek mesajlarini siniflandiran bir asistansin.
+  Verilen musteri mesajini oku ve kategorisini ile oncelik seviyesini belirle.
+
+context: |
+  Sirket, elektronik urunler satan ve musteri destegi saglayan bir e-ticaret platformudur.
+  Musteriler fatura sorunlari, teknik arizalar, iptal talepleri, sikayetler ve genel sorular icin
+  destek hattina yazmaktadir.
+
+constraints: |
+  Kurallar:
+  - Kategori sadece su bes degerden biri olabilir: billing, technical_issue, cancellation, complaint, general_inquiry
+  - Oncelik sadece su uc degerden biri olabilir: low, medium, high
+  - Baska hicbir aciklama veya yorum ekleme.
+
+output_format: |
+  Cevabini TAM OLARAK su iki satirlik formatta ver, baska hicbir metin ekleme:
+
+  ETIKET: <category>
+  ONCELIK: <priority>
+
+# Few-shot ornekleri degerlendirme veri setinde (data/messages.json) BULUNMAYAN mesajlardir.
+few_shot_examples:
+  - message: "Kargom 10 gundur elime ulasmadi, ne zaman gelecek ogrenebilir miyim?"
+    label: "general_inquiry"
+    priority: "low"
+  - message: "Telefonum sarj olurken birden kapandi ve bir daha acilmadi, acil yardim istiyorum."
+    label: "technical_issue"
+    priority: "high"
+  - message: "Aboneligimi iptal etmek istiyorum, islemi nasil yapabilirim?"
+    label: "cancellation"
+    priority: "medium"
+
+experiments:
+  E01_baseline:
+    name: "E01 - Baseline"
+    description: "Sadece instruction icerir. Context, constraints veya output format yoktur."
+    components:
+      - instruction
+
+  E02_context_constraints:
+    name: "E02 - Context + Constraints"
+    description: "Instruction, context ve constraints bilesenlerini icerir. Henuz kesin cikti formati yoktur."
+    components:
+      - instruction
+      - context
+      - constraints
+
+  E03_output_contract:
+    name: "E03 - Output Contract"
+    description: "Onceki bilesenlere ek olarak kesin cikti formati (output contract) eklenir."
+    components:
+      - instruction
+      - context
+      - constraints
+      - output_format
+
+  E04_few_shot:
+    name: "E04 - Few-Shot"
+    description: "Onceki tum bilesenlere ek olarak few-shot ornekler eklenir."
+    components:
+      - instruction
+      - context
+      - constraints
+      - output_format
+      - few_shot_examples

@@ -1,0 +1,9 @@
+[model]
+provider = "groq"
+name = "openai/gpt-oss-20b"
+temperature = 0.0
+max_completion_tokens = 512
+
+[experiment]
+max_cases = 5
+repetitions = 1

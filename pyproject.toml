@@ -1,0 +1,18 @@
+[project]
+name = "prompt-engineering-classroom"
+version = "0.1.0"
+description = "LAB01 - Minimal prompt engineering classroom lab using the Groq API"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "groq>=0.11.0",
+    "pandas>=2.2.0",
+    "matplotlib>=3.9.0",
+    "pyyaml>=6.0.0",
+    "python-dotenv>=1.0.0",
+    "jupyterlab>=4.2.0",
+    "ipykernel>=6.29.0",
+    "tomli>=2.0.0",
+]
+
+[tool.uv]
+package = false

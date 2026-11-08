@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "message": "Son faturamda yanlis ucretlendirme var, 2 kat fazla odeme yapmisim gibi gorunuyor.",
+    "expected_label": "billing",
+    "expected_priority": "medium"
+  },
+  {
+    "id": 2,
+    "message": "Gecen ay odedigim tutar ile fatura detayinda yazan tutar birbirini tutmuyor, aciklama rica ediyorum.",
+    "expected_label": "billing",
+    "expected_priority": "low"
+  },
+  {
+    "id": 3,
+    "message": "Kredi kartimdan iki kere ayni tutarda cekim yapilmis, acilen iade istiyorum.",
+    "expected_label": "billing",
+    "expected_priority": "high"
+  },
+  {
+    "id": 4,
+    "message": "Yeni aldigim kulaklik hic sarj almiyor, kutudan cikali sadece iki gun oldu.",
+    "expected_label": "technical_issue",
+    "expected_priority": "high"
+  },
+  {
+    "id": 5,
+    "message": "Akilli saatim bazen ekranini kilitliyor ve yeniden baslatmam gerekiyor, surekli degil ama sik oluyor.",
+    "expected_label": "technical_issue",
+    "expected_priority": "medium"
+  },
+  {
+    "id": 6,
+    "message": "Bluetooth hoparlorumu telefonuma baglarken bazen ilk denemede eslesmiyor, ikinci denemede calisiyor.",
+    "expected_label": "technical_issue",
+    "expected_priority": "low"
+  },
+  {
+    "id": 7,
+    "message": "Gecen hafta siparis ettigim tableti iptal etmek istiyorum, henuz kargoya verilmedi.",
+    "expected_label": "cancellation",
+    "expected_priority": "medium"
+  },
+  {
+    "id": 8,
+    "message": "Yillik bakim aboneligimi iptal etmek istiyorum, bir sonraki fatura donemi gelmeden once bildirmek istedim.",
+    "expected_label": "cancellation",
+    "expected_priority": "low"
+  },
+  {
+    "id": 9,
+    "message": "Siparisimi yanlis verdigimi fark ettim, hemen iptal edip dogru urunu tekrar siparis etmem gerekiyor.",
+    "expected_label": "cancellation",
+    "expected_priority": "high"
+  },
+  {
+    "id": 10,
+    "message": "Magazanizdan aldigim laptop bir haftada iki kez arizalandi, bu kadar kotu bir deneyim yasamamistim.",
+    "expected_label": "complaint",
+    "expected_priority": "high"
+  },
+  {
+    "id": 11,
+    "message": "Kargo gorevlisi paketi kapimin onune birakip gitti, kapiyi calmadi bile, bu konuda sikayetci olmak istiyorum.",
+    "expected_label": "complaint",
+    "expected_priority": "medium"
+  },
+  {
+    "id": 12,
+    "message": "Musteri hizmetlerini aradigimda uzun sure beklettiler ve sorunum cozulmeden kapattilar, bu durumdan memnun degilim.",
+    "expected_label": "complaint",
+    "expected_priority": "medium"
+  },
+  {
+    "id": 13,
+    "message": "Yeni cikacak olan kamera modelinin Turkiye'de ne zaman satisa sunulacagini ogrenebilir miyim?",
+    "expected_label": "general_inquiry",
+    "expected_priority": "low"
+  },
+  {
+    "id": 14,
+    "message": "Magazalarinizda ogrenci indirimi uygulaniyor mu, varsa nasil basvurabilirim?",
+    "expected_label": "general_inquiry",
+    "expected_priority": "low"
+  },
+  {
+    "id": 15,
+    "message": "Garanti sureci hakkinda genel bilgi almak istiyorum, urunlerin garanti suresi kac yil?",
+    "expected_label": "general_inquiry",
+    "expected_priority": "low"
+  }
+]
