@@ -1,0 +1,93 @@
+# LAB03 - Zero-Shot vs Few-Shot Prompting & Example Selection - Prompt Konfigurasyonu
+#
+# Senaryo: Bir e-ticaret sirketinin Customer Support Assistant uygulamasi,
+# gelen musteri mesajlarini bes kategoriden birine siniflandiriyor:
+# billing, technical_issue, cancellation, complaint, general_inquiry.
+#
+# Butun deneylerde (E01-E04) identity, instruction, category_definitions,
+# classification_rules ve output_contract AYNIDIR. Deneyler arasindaki tek
+# fark, few-shot example sayisi, secimi ve (E04'te) siralamasidir.
+
+identity: |
+  Sen bir e-ticaret sirketinin Customer Support Assistant'isin. Gorevin,
+  gelen musteri destek mesajlarini asagida tanimlanan bes kategoriden birine
+  siniflandirmaktir.
+
+instruction: |
+  Verilen musteri mesajini oku ve asagida tanimlanan kategorilerden TAM
+  OLARAK birini sec. Bu gorev yalnizca kategori siniflandirmasidir; oncelik
+  seviyesi, cozum onerisi veya baska hicbir degerlendirme isteme.
+
+category_definitions: |
+  Gecerli kategoriler ve tanimlari:
+
+  - billing: Fatura, odeme, yanlis tahsilat ve ucretlendirme sorunlari.
+  - technical_issue: Urun arizasi, yazilim veya cihazin teknik calismasiyla
+    ilgili problemler.
+  - cancellation: Siparis veya hizmetin iptal edilmesi talepleri.
+  - complaint: Diger kategorilere acikca girmeyen hizmet kalitesi ve
+    memnuniyetsizlik sikayetleri.
+  - general_inquiry: Urun, siparis veya hizmet hakkinda bilgi alma
+    talepleri.
+
+classification_rules: |
+  Bir mesaj birden fazla kategoriye benziyorsa, beklenen kategoriyi
+  belirlemek icin asagidaki karar kurallarini SIRASIYLA uygula (ilk eslesen
+  kural gecerlidir, sonraki kurallara bakilmaz):
+
+  1. Mesaj acik bir iptal talebi iceriyorsa (siparisin veya hizmetin iptal
+     edilmesini istiyorsa) -> cancellation.
+  2. (1. kural eslesmediyse) Mesaj bir urunun veya hizmetin teknik olarak
+     calismadigini anlatiyorsa (ariza, calismiyor, cöküyor, baglanmiyor,
+     sarj olmuyor) -> technical_issue.
+  3. (1-2. kurallar eslesmediyse) Mesaj fatura, odeme, ucretlendirme,
+     yanlis tahsilat veya iade edilmeyen bir ucretle ilgiliyse -> billing.
+  4. (1-3. kurallar eslesmediyse) Musterinin hizmet kalitesinden veya
+     deneyiminden acikca memnuniyetsiz oldugu bir durum varsa -> complaint.
+  5. (Yukaridaki kurallarin hicbiri eslesmediyse) Mesaj bir bilgi alma
+     talebi niteligindeyse -> general_inquiry.
+
+  Bu kurallar butun deneylerde (E01-E04) aynidir ve degismez.
+
+output_contract: |
+  Cevabini TAM OLARAK su tek satirlik formatta ver, baska hicbir aciklama
+  veya yorum ekleme:
+
+  ETIKET: <billing|technical_issue|cancellation|complaint|general_inquiry>
+
+# Hem few-shot example turnlerinde hem de gercek siniflandirma sorusunda
+# kullanilan ortak user mesaji sablonu.
+user_message_template: 'Musteri mesaji: "{message}"'
+
+experiments:
+  E01_zero_shot:
+    name: "E01 - Zero-Shot Baseline"
+    description: >
+      Model, musteri mesajini herhangi bir ornek giris-cikis cifti gormeden
+      siniflandirir. Few-shot example bulunmaz (example_ids bos).
+    example_ids: []
+
+  E02_redundant_few_shot:
+    name: "E02 - Few-Shot: Redundant / Biased Examples"
+    description: >
+      Modele tam 5 few-shot example verilir. Ornekler cogunlukla ayni
+      kategoride (billing) yogunlasir ve birbirine benzer: 4 billing, 1
+      technical_issue. Amac, dusuk cesitlilik ve temsil dengesizliginin
+      model performansiyla iliskisini incelemek.
+    example_ids: [example_001, example_002, example_003, example_004, example_005]
+
+  E03_diverse_few_shot:
+    name: "E03 - Few-Shot: Curated & Diverse Examples"
+    description: >
+      Modele tam 5 few-shot example verilir. Ornekler bes kategoriyi de
+      (billing, technical_issue, cancellation, complaint, general_inquiry)
+      birer kez temsil eder ve mumkun oldugunca birbirini tekrar etmez.
+    example_ids: [example_002, example_006, example_009, example_012, example_015]
+
+  E04_reversed_order:
+    name: "E04 - Few-Shot: Order Sensitivity (Reversed)"
+    description: >
+      E03 ile TAMAMEN ayni 5 example kullanilir; tek fark, bu orneklerin
+      mesaj dizisi (messages) icindeki sirasinin tersine cevrilmis
+      olmasidir.
+    example_ids: [example_015, example_012, example_009, example_006, example_002]

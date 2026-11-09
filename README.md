@@ -16,12 +16,20 @@ teaching LLM prompt engineering, using real LLM calls through the Groq API.
   untrusted content can reduce prompt injection success but is not a
   security guarantee by itself; deterministic application-level checks only
   catch the specific violations they are built for.**
+- **LAB03** compares zero-shot prompting against three few-shot example
+  selection strategies — no examples, redundant/biased examples, curated
+  diverse examples, and the same diverse examples in reversed order — on a
+  customer-support category classification task. Research questions
+  explored: whether adding few-shot examples always improves accuracy,
+  whether redundant examples perform differently from diverse ones, and
+  whether example ordering alone changes individual model decisions.
 
 All experiment logic lives directly inside each lab's notebook
-(`notebooks/lab01_prompt_anatomy.ipynb`, `notebooks/lab02_instruction_hierarchy.ipynb`).
+(`notebooks/lab01_prompt_anatomy.ipynb`, `notebooks/lab02_instruction_hierarchy.ipynb`,
+`notebooks/lab03_zero_shot_few_shot.ipynb`).
 There is no `src/` package, no classes, and no custom framework — just small,
 readable Python functions meant to be read and modified live during a class.
-Both labs share the same `uv` environment, Docker setup, and
+All three labs share the same `uv` environment, Docker setup, and
 `config/settings.toml` model configuration.
 
 ## Requirements
@@ -138,3 +146,50 @@ invalid-response rate, model-level and system-level prompt-injection attack
 success rate (computed only over attack cases), and token/latency usage.
 The deterministic check in E04 is deliberately narrow — it only catches one
 specific policy violation and makes no broader security claim.
+
+## Running LAB03
+
+Open `notebooks/lab03_zero_shot_few_shot.ipynb` and run the cells top to
+bottom. Same safety model as LAB01/LAB02: nothing before the client-setup
+step needs an API key, and the "Execute Experiments" step only calls Groq
+if you explicitly set `RUN_LIVE = True`.
+
+- Model/generation parameters come from the same `config/settings.toml` as
+  LAB01/LAB02 (no separate model config).
+- LAB03's own experiment sizing (`LAB03_MAX_CASES`, `LAB03_REPETITIONS`) is
+  defined inside the notebook itself, independent of `config/settings.toml`,
+  so changing it never affects LAB01 or LAB02.
+- Prompt components (identity, instruction, category definitions,
+  classification rules, output contract, per-experiment example lists) are
+  defined in `config/lab03_prompts.yaml`.
+- The evaluation set lives in `data/lab03_evaluation.json` (20 messages,
+  balanced across all 5 categories); the few-shot example candidate pool
+  lives in `data/lab03_examples.json` (15 candidates) and is kept separate
+  from the evaluation set to avoid data leakage.
+
+## LAB03 Experiment Description
+
+A synthetic Customer Support Assistant classifies a Turkish customer
+message into one of `billing`, `technical_issue`, `cancellation`,
+`complaint`, or `general_inquiry`. Every experiment shares the same model,
+temperature, system instruction (identity, category definitions,
+classification rules, output contract), evaluation cases, and repetitions;
+only the few-shot examples differ.
+
+| Experiment | Example Count | Selection Strategy | Ordering |
+|---|---:|---|---|
+| `E01_zero_shot` | 0 | No examples | N/A |
+| `E02_redundant_few_shot` | 5 | Biased / redundant (4 billing + 1 technical_issue) | Fixed |
+| `E03_diverse_few_shot` | 5 | Curated / balanced (one per category) | Fixed |
+| `E04_reversed_order` | 5 | Same examples as E03 | Reversed |
+
+Each few-shot example is represented as a `user`/`assistant` message pair
+inserted into the `messages` array before the actual classification
+question — this is visible directly in the request JSON inspection step,
+comparing E01 against E03.
+
+Measured per experiment: label accuracy, format compliance rate, invalid
+response rate, API error rate, prompt/completion/total token usage, and
+average latency — plus a per-category accuracy breakdown and an explicit
+case-by-case comparison between E03 and E04 showing which individual
+decisions changed when the same five examples were reordered.

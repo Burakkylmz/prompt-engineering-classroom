@@ -1,0 +1,142 @@
+[
+  {
+    "id": "eval_001",
+    "message": "Kredi kartimdan ayni siparis icin iki kez odeme alinmis, lutfen fazladan kesilen ucreti iade edin.",
+    "expected_label": "billing",
+    "difficulty": "easy",
+    "notes": "Duplicate payment classification"
+  },
+  {
+    "id": "eval_002",
+    "message": "Son faturamda uygulanmasi gereken indirim kodu dusulmemis, bu ay fazla odeme yapmis olabilirim.",
+    "expected_label": "billing",
+    "difficulty": "medium",
+    "notes": "Billing error caused by missing discount application"
+  },
+  {
+    "id": "eval_003",
+    "message": "Gecen ay iade ettigim urunun parasi hala hesabima yatmadi, ucretle ilgili konuyu takip etmek istiyorum.",
+    "expected_label": "billing",
+    "difficulty": "medium",
+    "notes": "Refund follow-up after a completed return; no cancellation is being requested, so rule 1 does not apply"
+  },
+  {
+    "id": "eval_004",
+    "message": "Faturamda taninmayan bir cihaz kirasi goruyorum, hic boyle bir urun kiralamadim.",
+    "expected_label": "billing",
+    "difficulty": "hard",
+    "notes": "Unauthorized/unknown charge on invoice"
+  },
+  {
+    "id": "eval_005",
+    "message": "Yeni aldigim kulaklik sadece sol taraftan ses veriyor, sag taraf tamamen sessiz kaliyor.",
+    "expected_label": "technical_issue",
+    "difficulty": "easy",
+    "notes": "Clear hardware malfunction"
+  },
+  {
+    "id": "eval_006",
+    "message": "Mobil uygulama her acilista aninda cöküyor, guncelleme yapmama ragmen sorun duzelmedi.",
+    "expected_label": "technical_issue",
+    "difficulty": "easy",
+    "notes": "Software crash, clear technical malfunction"
+  },
+  {
+    "id": "eval_007",
+    "message": "Akilli saatim gece sarj olurken kendiliginden kapaniyor ve sabah tekrar acilmiyor.",
+    "expected_label": "technical_issue",
+    "difficulty": "medium",
+    "notes": "Device fails to charge/power on correctly"
+  },
+  {
+    "id": "eval_008",
+    "message": "Robot supurgem oda haritasini cikarirken yariya kadar gidip aniden duruyor, servis cagirmadan once sizinle kontrol etmek istedim.",
+    "expected_label": "technical_issue",
+    "difficulty": "hard",
+    "notes": "Phrased politely as a question, but describes a malfunction, not an information request (rule 2 before rule 5)"
+  },
+  {
+    "id": "eval_009",
+    "message": "Gecen hafta verdigim tablet siparisini iptal etmek istiyorum, henuz kargoya verilmedi.",
+    "expected_label": "cancellation",
+    "difficulty": "easy",
+    "notes": "Explicit cancellation request, order not yet shipped"
+  },
+  {
+    "id": "eval_010",
+    "message": "Yillik bakim aboneligimi iptal etmek istiyorum, bir sonraki fatura donemi gelmeden once bildirmek istedim.",
+    "expected_label": "cancellation",
+    "difficulty": "easy",
+    "notes": "Explicit subscription cancellation request"
+  },
+  {
+    "id": "eval_011",
+    "message": "Telefonum arizali geldi ama tamir surecini beklemek istemiyorum, siparisin tamamen iptal edilmesini talep ediyorum.",
+    "expected_label": "cancellation",
+    "difficulty": "hard",
+    "notes": "Mentions a technical defect, but the explicit request is cancellation; rule 1 takes priority over rule 2"
+  },
+  {
+    "id": "eval_012",
+    "message": "Faturamda yanlis tutar gorunuyor ve bu yuzden tum aboneligimi iptal etmek istiyorum.",
+    "expected_label": "cancellation",
+    "difficulty": "hard",
+    "notes": "Mentions a billing issue, but the explicit request is cancellation; rule 1 takes priority over rule 3"
+  },
+  {
+    "id": "eval_013",
+    "message": "Musteri hizmetlerini aradigimda 40 dakika beklettiler ve sorunum cozulmeden telefonu kapattilar, bu durumdan hic memnun degilim.",
+    "expected_label": "complaint",
+    "difficulty": "easy",
+    "notes": "Clear dissatisfaction with service quality, no other category applies"
+  },
+  {
+    "id": "eval_014",
+    "message": "Kargo gorevlisi paketi kapimin onune birakip gitti, kapiyi calmadi bile, bu konuda sikayetci olmak istiyorum.",
+    "expected_label": "complaint",
+    "difficulty": "easy",
+    "notes": "Explicit complaint about delivery service quality"
+  },
+  {
+    "id": "eval_015",
+    "message": "Magazadaki personel bana karsi kaba davrandi, bu deneyimden sonra tekrar alisveris yapmak istemiyorum.",
+    "expected_label": "complaint",
+    "difficulty": "medium",
+    "notes": "Service quality complaint about staff behavior"
+  },
+  {
+    "id": "eval_016",
+    "message": "Siparisim soz verilen tarihten 5 gun sonra geldi ve hicbir aciklama ya da ozur almadim.",
+    "expected_label": "complaint",
+    "difficulty": "medium",
+    "notes": "Dissatisfaction with delayed delivery and lack of communication; no billing or technical fault mentioned"
+  },
+  {
+    "id": "eval_017",
+    "message": "Yeni cikacak olan kamera modelinin Turkiye'de ne zaman satisa sunulacagini ogrenebilir miyim?",
+    "expected_label": "general_inquiry",
+    "difficulty": "easy",
+    "notes": "Pure information request about product availability"
+  },
+  {
+    "id": "eval_018",
+    "message": "Magazalarinizda ogrenci indirimi uygulaniyor mu, varsa nasil basvurabilirim?",
+    "expected_label": "general_inquiry",
+    "difficulty": "easy",
+    "notes": "Information request about a discount policy, not a billing dispute"
+  },
+  {
+    "id": "eval_019",
+    "message": "Garanti sureci hakkinda genel bilgi almak istiyorum, urunlerin garanti suresi kac yil?",
+    "expected_label": "general_inquiry",
+    "difficulty": "medium",
+    "notes": "General information request about warranty policy"
+  },
+  {
+    "id": "eval_020",
+    "message": "Kargo teslimat sureleriniz sehir disi adresler icin ortalama kac gun surer?",
+    "expected_label": "general_inquiry",
+    "difficulty": "medium",
+    "notes": "General information request about delivery times"
+  }
+]

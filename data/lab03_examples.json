@@ -1,0 +1,77 @@
+[
+  {
+    "id": "example_001",
+    "message": "Son faturamda fazladan bir ucret gorunuyor, nedenini ogrenmek istiyorum.",
+    "label": "billing"
+  },
+  {
+    "id": "example_002",
+    "message": "Gecen ay odedigim tutar ile fatura detayinda yazan tutar birbirini tutmuyor.",
+    "label": "billing"
+  },
+  {
+    "id": "example_003",
+    "message": "Ayni urun icin ust uste iki fatura kesildigini fark ettim, iadesini istiyorum.",
+    "label": "billing"
+  },
+  {
+    "id": "example_004",
+    "message": "Hesabimdan izinsiz bir ek hizmet ucreti tahsil edilmis.",
+    "label": "billing"
+  },
+  {
+    "id": "example_005",
+    "message": "Bluetooth kulakligim telefonuma baglanirken surekli kopuyor.",
+    "label": "technical_issue"
+  },
+  {
+    "id": "example_006",
+    "message": "Laptopum ac kapat yaparken bazen hic acilmiyor, ekrani kararik kaliyor.",
+    "label": "technical_issue"
+  },
+  {
+    "id": "example_007",
+    "message": "Akilli priz uygulamadan komut aldiginda gecikmeli tepki veriyor.",
+    "label": "technical_issue"
+  },
+  {
+    "id": "example_008",
+    "message": "Siparisimi henuz kargoya verilmeden iptal etmek istiyorum.",
+    "label": "cancellation"
+  },
+  {
+    "id": "example_009",
+    "message": "Uyelik aboneligimi bu ay sonunda iptal etmeyi planliyorum.",
+    "label": "cancellation"
+  },
+  {
+    "id": "example_010",
+    "message": "Yanlislikla verdigim ikinci siparisi iptal etmem gerekiyor.",
+    "label": "cancellation"
+  },
+  {
+    "id": "example_011",
+    "message": "Teslimat gorevlisi urunu hasarli teslim etti ve ozur dahi dilemedi.",
+    "label": "complaint"
+  },
+  {
+    "id": "example_012",
+    "message": "Destek hattinda uzun sure bekletildim ve sorunum hala cozulmedi.",
+    "label": "complaint"
+  },
+  {
+    "id": "example_013",
+    "message": "Magaza ici hizmet kalitesinden hic memnun kalmadim.",
+    "label": "complaint"
+  },
+  {
+    "id": "example_014",
+    "message": "Yeni urun lansmanlari hakkinda bilgi almak istiyorum.",
+    "label": "general_inquiry"
+  },
+  {
+    "id": "example_015",
+    "message": "Kargo takip numaramla paketimi nasil takip edebilirim?",
+    "label": "general_inquiry"
+  }
+]
